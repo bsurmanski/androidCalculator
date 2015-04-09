@@ -74,4 +74,8 @@ public class Calculator {
         }
         entry = ans;
     }
+
+    double getEntry() {
+        return entry.doubleValue();
+    }
 }
