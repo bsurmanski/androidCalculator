@@ -33,15 +33,21 @@ public class Calculator {
 
     BigDecimal ans; // previous entry
     BigDecimal entry; // current entry
+    BinOp currentOp;
 
     public Calculator() {
         mc = new MathContext(20);
         ans = new BigDecimal(0, mc);
         entry = new BigDecimal(0, mc);
+        currentOp = BinOp.ADD;
     }
 
-    void apply(BinOp op) {
-        switch(op) {
+    public void setOperator(BinOp op) {
+        currentOp = op;
+    }
+
+    void apply() {
+        switch(currentOp) {
             case DIV:
                 ans = ans.divide(entry, mc);
                 break;
@@ -81,8 +87,11 @@ public class Calculator {
     }
 
     void setEntry(String str) throws ParseException {
+        ans = entry;
+
         BigDecimal val = new BigDecimal(0, mc);
         boolean dot = false;
+        boolean negative = false;
         for(int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
             if(c >= '0' && c <= '9') {
@@ -91,11 +100,18 @@ public class Calculator {
                 val = val.add(new BigDecimal(digit, mc), mc);
             } else if(c == '.' && !dot) {
                 dot = true;
+            } else if (c == '-' && i == 0) {
+                negative = true;
             } else {
-                throw new ParseException("Invalid character in string", i);
+                    throw new ParseException("Invalid character in string", i);
+                }
             }
+
+            if(negative) {
+                val = val.negate();
+            }
+            entry = val;
         }
-    }
 
     double getEntry() {
         return entry.doubleValue();

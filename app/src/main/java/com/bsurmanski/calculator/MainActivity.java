@@ -14,13 +14,18 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     Calculator calculator;
     TextView entryField;
-    Button clearButton;
     Button[] numberButtons;
+    Button clearButton;
+    Button negateButton;
     Button dotButton;
     Button subButton;
     Button addButton;
+    Button mulButton;
+    Button divButton;
     Button eqButton;
     String entryString;
+
+    boolean clearOnNextInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +37,24 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         entryField = (TextView) findViewById(R.id.calcEntry);
         entryField.setText("" + calculator.getEntry());
         entryString = "0";
+        clearOnNextInput = true;
 
         clearButton = (Button) findViewById(R.id.cls);
+        negateButton = (Button) findViewById(R.id.negate);
         dotButton = (Button) findViewById(R.id.dot);
         subButton = (Button) findViewById(R.id.sub);
         addButton = (Button) findViewById(R.id.plus);
+        mulButton = (Button) findViewById(R.id.mul);
+        divButton = (Button) findViewById(R.id.div);
         eqButton = (Button) findViewById(R.id.eq);
 
         clearButton.setOnClickListener(this);
+        negateButton.setOnClickListener(this);
         dotButton.setOnClickListener(this);
         subButton.setOnClickListener(this);
         addButton.setOnClickListener(this);
+        mulButton.setOnClickListener(this);
+        divButton.setOnClickListener(this);
         eqButton.setOnClickListener(this);
 
         numberButtons = new Button[10];
@@ -81,7 +93,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         if(isNumericButton(v)) {
             int id = getButtonId((Button) v);
-            if(entryString.equals("0")) entryString = "";
+            if(clearOnNextInput) {
+                entryString = "";
+                clearOnNextInput = false;
+            }
             entryString += Integer.toString(id);
         }
 
@@ -98,8 +113,44 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         try {
             if (v == subButton) {
+                calculator.setOperator(Calculator.BinOp.SUB);
                 calculator.setEntry(entryString);
+                clearOnNextInput = true;
             }
+
+            if(v == addButton) {
+                calculator.setOperator(Calculator.BinOp.ADD);
+                calculator.setEntry(entryString);
+                clearOnNextInput = true;
+            }
+
+            if(v == mulButton) {
+                calculator.setOperator(Calculator.BinOp.MUL);
+                calculator.setEntry(entryString);
+                clearOnNextInput = true;
+            }
+
+            if(v == divButton) {
+                calculator.setOperator(Calculator.BinOp.DIV);
+                calculator.setEntry(entryString);
+                clearOnNextInput = true;
+            }
+
+            if(v == eqButton) {
+                calculator.setEntry(entryString);
+                calculator.apply();
+                entryString = Double.toString(calculator.getEntry());
+                clearOnNextInput = true;
+            }
+
+            if(v == negateButton) {
+                if(entryString.startsWith("-")) {
+                    entryString = entryString.substring(1);
+                } else {
+                    entryString = "-" + entryString;
+                }
+            }
+
         } catch (Exception e) {
             entryString = "ERROR";
         }
