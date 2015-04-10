@@ -14,7 +14,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     Calculator calculator;
     TextView entryField;
+    Button clearButton;
     Button[] numberButtons;
+    Button dotButton;
+    Button subButton;
+    Button addButton;
+    Button eqButton;
+    String entryString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +29,22 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         calculator = new Calculator();
 
-
         entryField = (TextView) findViewById(R.id.calcEntry);
         entryField.setText("" + calculator.getEntry());
+        entryString = "0";
+
+        clearButton = (Button) findViewById(R.id.cls);
+        dotButton = (Button) findViewById(R.id.dot);
+        subButton = (Button) findViewById(R.id.sub);
+        addButton = (Button) findViewById(R.id.plus);
+        eqButton = (Button) findViewById(R.id.eq);
+
+        clearButton.setOnClickListener(this);
+        dotButton.setOnClickListener(this);
+        subButton.setOnClickListener(this);
+        addButton.setOnClickListener(this);
+        eqButton.setOnClickListener(this);
+
         numberButtons = new Button[10];
         numberButtons[0] = (Button) findViewById(R.id.num0);
         numberButtons[1] = (Button) findViewById(R.id.num1);
@@ -50,9 +69,42 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         return -1;
     }
 
+    boolean isNumericButton(View b) {
+        for(int i = 0; i < numberButtons.length; i++){
+            if(numberButtons[i] == b) return true;
+        }
+        return false;
+    }
+
     public void onClick(View v) {
-        int id = getButtonId((Button) v);
-        entryField.setText("" + id);
+        if(entryString.equals("ERROR")) entryString = "0";
+
+        if(isNumericButton(v)) {
+            int id = getButtonId((Button) v);
+            if(entryString.equals("0")) entryString = "";
+            entryString += Integer.toString(id);
+        }
+
+        if(v == dotButton) {
+            if(!entryString.contains(".")) {
+                entryString += ".";
+            }
+        }
+
+        if(v == clearButton) {
+            calculator.clear();
+            entryString = "0";
+        }
+
+        try {
+            if (v == subButton) {
+                calculator.setEntry(entryString);
+            }
+        } catch (Exception e) {
+            entryString = "ERROR";
+        }
+
+        entryField.setText(entryString);
     }
 
 

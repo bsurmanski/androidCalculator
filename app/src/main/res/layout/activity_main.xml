@@ -42,6 +42,13 @@
                 android:text="CLS"
                 android:id="@+id/cls" />
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+/-"
+                android:id="@+id/plusminus"
+                android:layout_weight="1" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -165,8 +172,8 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="+/-"
-                android:id="@+id/plusminus"
+                android:text="."
+                android:id="@+id/dot"
                 android:layout_weight="1" />
 
             <Button
@@ -179,15 +186,15 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="."
-                android:id="@+id/dot"
+                android:text="="
+                android:id="@+id/eq"
                 android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="="
-                android:id="@+id/eq"
+                android:text="+"
+                android:id="@+id/plus"
                 android:layout_weight="1" />
         </LinearLayout>
 

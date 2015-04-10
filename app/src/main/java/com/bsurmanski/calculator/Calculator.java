@@ -2,6 +2,7 @@ package com.bsurmanski.calculator;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.text.ParseException;
 
 /**
  * Created by brandon on 4/9/15.
@@ -73,6 +74,27 @@ public class Calculator {
                 break;
         }
         entry = ans;
+    }
+
+    void clear() {
+        entry = new BigDecimal(0, mc);
+    }
+
+    void setEntry(String str) throws ParseException {
+        BigDecimal val = new BigDecimal(0, mc);
+        boolean dot = false;
+        for(int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if(c >= '0' && c <= '9') {
+                int digit = c - '0';
+                val = val.movePointRight(1);
+                val = val.add(new BigDecimal(digit, mc), mc);
+            } else if(c == '.' && !dot) {
+                dot = true;
+            } else {
+                throw new ParseException("Invalid character in string", i);
+            }
+        }
     }
 
     double getEntry() {
