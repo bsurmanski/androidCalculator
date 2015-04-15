@@ -45,10 +45,10 @@
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/pad0"
                 android:layout_weight="1"
-                android:visibility="gone" />
+                android:visibility="invisible" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -59,19 +59,17 @@
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="M+"
                 android:id="@+id/mplus"
-                android:layout_weight="1"
-                android:visibility="gone" />
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="M-"
                 android:id="@+id/mminus"
-                android:layout_weight="1"
-                android:visibility="gone" />
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -82,13 +80,13 @@
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/pad1"
                 android:layout_above="@+id/linearLayout"
                 android:layout_alignRight="@+id/calcEntry"
                 android:layout_alignEnd="@+id/calcEntry"
                 android:layout_weight="1"
-                android:visibility="gone" />
+                android:visibility="invisible" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -113,8 +111,7 @@
                 android:text="2nd"
                 android:id="@+id/alt"
                 android:layout_weight="1"
-                android:clickable="false"
-                android:visibility="gone" />
+                android:clickable="false" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -122,24 +119,21 @@
                 android:text="@string/rand"
                 android:id="@+id/rand"
                 android:layout_weight="1"
-                android:singleLine="false"
-                android:visibility="gone" />
+                android:singleLine="false" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="x!"
                 android:id="@+id/fac"
-                android:layout_weight="1"
-                android:visibility="gone" />
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="MOD"
                 android:id="@+id/mod"
-                android:layout_weight="1"
-                android:visibility="gone" />
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -182,32 +176,28 @@
                 android:layout_height="fill_parent"
                 android:text="x2"
                 android:id="@+id/sq"
-                android:layout_weight="1"
-                android:visibility="gone" />
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="yx"
                 android:id="@+id/pow"
-                android:layout_weight="1"
-                android:visibility="gone" />
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="log"
                 android:id="@+id/log"
-                android:layout_weight="1"
-                android:visibility="gone" />
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="ln"
                 android:id="@+id/ln"
-                android:layout_weight="1"
-                android:visibility="gone" />
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -250,32 +240,28 @@
                 android:layout_height="fill_parent"
                 android:text="rad"
                 android:id="@+id/rad"
-                android:layout_weight="1"
-                android:visibility="gone" />
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="sin"
                 android:id="@+id/sin"
-                android:layout_weight="1"
-                android:visibility="gone" />
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="cos"
                 android:id="@+id/cos"
-                android:layout_weight="1"
-                android:visibility="gone" />
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="tan"
                 android:id="@+id/tan"
-                android:layout_weight="1"
-                android:visibility="gone" />
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -317,23 +303,21 @@
                 android:layout_height="fill_parent"
                 android:text="PI"
                 android:id="@+id/pi"
-                android:layout_weight="1"
-                android:visibility="gone" />
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:id="@+id/sinh"
                 android:layout_weight="1"
-                android:text="SINH"
-                android:visibility="gone" />
+                android:text="SINH" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:id="@+id/cosh"
                 android:layout_weight="1"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:text="COSH" />
 
             <Button
@@ -341,8 +325,7 @@
                 android:layout_height="fill_parent"
                 android:text="TANH"
                 android:id="@+id/tanh"
-                android:layout_weight="1"
-                android:visibility="gone" />
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
