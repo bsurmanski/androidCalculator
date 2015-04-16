@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.bsurmanski.calculator"
+        applicationId "ca.blocklogic.calculator"
         minSdkVersion 15
         targetSdkVersion 21
         versionCode 1
