@@ -1,4 +1,4 @@
-package com.bsurmanski.calculator;
+package ca.blocklogic.calculator;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

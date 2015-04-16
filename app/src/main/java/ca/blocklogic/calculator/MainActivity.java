@@ -1,6 +1,5 @@
-package com.bsurmanski.calculator;
+package ca.blocklogic.calculator;
 
-import android.net.wifi.p2p.WifiP2pManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.blocklogic.calculator.R;
 
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {

@@ -1,4 +1,4 @@
-package com.bsurmanski.calculator;
+package ca.blocklogic.calculator;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
