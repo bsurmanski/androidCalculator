@@ -10,6 +10,10 @@ import android.widget.TextView;
 
 import com.blocklogic.calculator.R;
 
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
@@ -46,6 +50,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     Button tanhButton;
 
     String entryString;
+    String errorString;
 
     boolean clearOnNextInput;
     boolean altOperator;
@@ -57,6 +62,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         calculator = new Calculator();
 
+        errorString = getString(R.string.error);
         entryField = (TextView) findViewById(R.id.calcEntry);
         entryField.setText("" + calculator.getEntry());
         entryString = "0";
@@ -133,6 +139,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         sinhButton.setOnClickListener(this);
         coshButton.setOnClickListener(this);
         tanhButton.setOnClickListener(this);
+
+        DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance();
+        dotButton.setText("" + symbols.getDecimalSeparator());
     }
 
     void setAltLabels() {
@@ -183,7 +192,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             entryString = Double.toString(calculator.getEntry());
             clearOnNextInput = true;
         } catch(Exception e) {
-            entryString = "ERROR";
+            entryString = errorString;
             clearOnNextInput = true;
         }
     }
@@ -199,13 +208,48 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             calculator.setEntry(entryString);
             clearOnNextInput = true;
         } catch(Exception e){
-            entryString = "ERROR";
+            entryString = errorString;
             clearOnNextInput = true;
         }
     }
 
+    private String localizeValue(String value) {
+        try {
+            DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance();
+            StringBuilder builder = new StringBuilder();
+
+            int dindex = value.indexOf(symbols.getDecimalSeparator());
+            if(dindex < 0) dindex = value.length();
+
+            // build up string (with grouping seperators) backwards, then reverse it
+            for(int i = dindex - 1; i >= 0; i--) {
+                char c = value.charAt(i);
+                if(!Character.isDigit(c) && c != '-') return errorString;
+                builder.append(c);
+
+                if((dindex-i) % 3 == 0 && i != 0 && value.charAt(i-1) != '-') {
+                    builder.append(symbols.getGroupingSeparator());
+                }
+            }
+
+            builder.reverse();
+
+            // tack on anything past the decimal point
+            for(int i = dindex; i < value.length(); i++) {
+                char c = value.charAt(i);
+                if(!Character.isDigit(c) && c != '.') return errorString;
+                builder.append(c);
+            }
+
+            return builder.toString();
+
+        } catch (Exception e) {
+            return errorString;
+        }
+    }
+
     public void onClick(View v) {
-        if (entryString.equals("ERROR")) entryString = "0";
+        if (entryString.equals(errorString)) entryString = "0";
 
         if (isNumericButton(v)) {
             int id = getButtonId((Button) v);
@@ -251,7 +295,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 entryString = Double.toString(calculator.getEntry());
                 clearOnNextInput = true;
             } catch (Exception e) {
-                entryString = "ERROR";
+                entryString = errorString;
                 clearOnNextInput = true;
             }
         }
@@ -285,7 +329,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 entryString = Double.toString(calculator.getEntry());
                 clearOnNextInput = true;
             } catch(Exception e) {
-                entryString = "ERROR";
+                entryString = errorString;
                 clearOnNextInput = true;
             }
         }
@@ -347,7 +391,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             else doUnaryOp(Calculator.UnOp.TANH);
         }
 
-        entryField.setText(entryString);
+        entryField.setText(localizeValue(entryString));
     }
 
 

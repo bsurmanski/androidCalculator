@@ -3,6 +3,27 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
+
     </style>
 
+    <style name="NUMButtons" parent="android:style/Widget.Button">
+        <item name="android:padding">2dip</item>
+        <item name="android:layout_margin">2dip</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">@drawable/numeric_button</item>
+    </style>
+
+    <style name="OpButtons" parent="android:style/Widget.Button">
+        <item name="android:padding">2dip</item>
+        <item name="android:layout_margin">2dip</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">@drawable/op_button</item>
+    </style>
+
+    <style name="MemButtons" parent="android:style/Widget.Button">
+        <item name="android:padding">2dip</item>
+        <item name="android:layout_margin">2dip</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">@drawable/mem_button</item>
+    </style>
 </resources>
